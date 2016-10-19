@@ -1,0 +1,75 @@
+﻿<Page
+    x:Class="BandProject.TrackingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BandProject"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="ListViewItemModelTemplate">
+            <StackPanel>
+                <Grid Width="350px">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle x:Name="color" Grid.RowSpan="3" Fill="Blue" Width="50" Height="50" Grid.Column="0" VerticalAlignment="Center" Margin="5,0,0,0" ></Rectangle>
+                    <Rectangle Grid.Row="0" Grid.Column="1" Fill="Silver" Width="350" Height="2" VerticalAlignment="Bottom" Margin="5,0,0,0"></Rectangle>
+                    <TextBlock x:Name="name" Grid.Row="1" TextWrapping="Wrap" Text="{Binding name}" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20" Foreground="White"/>
+                    <Button x:Name="Remove" Grid.Column="1"  Grid.Row="1" Margin="200,0,0,0" Content="remove" Foreground="Red" VerticalAlignment="Center" Click="Remove_Click"></Button>
+                    <Rectangle Grid.Row="2" Grid.Column="1" Fill="Silver" Width="350" Height="2" VerticalAlignment="Top" Margin="5,0,0,0"></Rectangle>
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <!--<Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Add" Label="Add item" Click="AddAppBarButton_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Images/background1.jpg"/>
+        </Grid.Background>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image Width="75" Source="/Images/logo.jpg"   Margin="5,1,0,3.667" Grid.Row="1"/>
+            <TextBlock x:Name="AppName" TextWrapping="Wrap" Text="Sport Activity Tracking" Grid.Row="1" Grid.Column="1" Foreground="White" VerticalAlignment="Top" Margin="15,0,0,0" FontSize="40"/>
+        </Grid>
+        <StackPanel Grid.Row="1">
+            <Rectangle Height="2px" Fill="Aqua"></Rectangle>
+            <TextBlock x:Name="AddStatus"  TextWrapping="Wrap" Text="Select a sport to check your gesture" Foreground="White" FontSize="24" Margin="10,20,10,10" FontWeight="Bold"></TextBlock>
+            <Grid Margin="0,20,0,0">
+                <ListView x:Name="listview"
+                  ItemTemplate="{StaticResource ListViewItemModelTemplate}"
+                  AllowDrop="True" SelectionChanged="listview_SelectionChanged" 
+                  ></ListView>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>
